@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'fooderlich_theme.dart';
 import 'circle_image.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   // 1
   final String authorName;
   final String title;
@@ -14,6 +14,13 @@ class AuthorCard extends StatelessWidget {
     required this.title,
     this.imageProvider,
   }) : super(key: key);
+
+  @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
 
   // 2
   @override
@@ -28,7 +35,7 @@ class AuthorCard extends StatelessWidget {
             Row(
               children: [
                 CircleImage(
-                  imageProvider: imageProvider,
+                  imageProvider: widget.imageProvider,
                   imageRadius: 28,
                 ),
                 // 2
@@ -38,11 +45,11 @@ class AuthorCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      authorName,
+                      widget.authorName,
                       style: FooderlichTheme.lightTextTheme.headline2,
                     ),
                     Text(
-                      title,
+                      widget.title,
                       style: FooderlichTheme.lightTextTheme.headline3,
                     ),
                   ],
@@ -50,18 +57,18 @@ class AuthorCard extends StatelessWidget {
               ],
             ),
             IconButton(
-              // 4
-              icon: const Icon(Icons.favorite_border),
+              // 1
+              icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
               iconSize: 30,
-              color: Colors.grey[400],
-              // 5
+              // 2
+              color: Colors.red[400],
               onPressed: () {
-                const snackBar = SnackBar(
-                  content: Text('Favorite Pressed'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                // 3
+                setState(() {
+                  _isFavorited = !_isFavorited;
+                });
               },
-            ),
+            )
           ],
         ));
   }
