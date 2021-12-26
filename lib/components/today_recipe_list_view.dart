@@ -23,7 +23,7 @@ class TodayRecipeListView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Recipes of the Day',
+            'Recipes of the Day 🍳',
             style: Theme.of(context).textTheme.headline1,
           ),
           const SizedBox(height: 16),
@@ -32,6 +32,7 @@ class TodayRecipeListView extends StatelessWidget {
             color: Colors.transparent,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
+              itemCount: recipes.length,
               itemBuilder: (context, index) {
                 final recipe = recipes[index];
                 return buildCard(recipe);
@@ -39,7 +40,6 @@ class TodayRecipeListView extends StatelessWidget {
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 16);
               },
-              itemCount: recipes.length,
             ),
           ),
         ],
@@ -51,15 +51,11 @@ class TodayRecipeListView extends StatelessWidget {
     if (recipe.cardType == RecipeCardType.card1) {
       return Card1(recipe: recipe);
     } else if (recipe.cardType == RecipeCardType.card2) {
-      return Card2(
-        recipe: recipe,
-      );
+      return Card2(recipe: recipe);
     } else if (recipe.cardType == RecipeCardType.card3) {
-      return Card3(
-        recipe: recipe,
-      );
+      return Card3(recipe: recipe);
     } else {
-      throw Exception('This card doesn\'t exist yet');
+      throw Exception("This card doesn't exist yet");
     }
   }
 }
