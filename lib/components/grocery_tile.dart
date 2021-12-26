@@ -38,10 +38,9 @@ class GroceryTile extends StatelessWidget {
                   Text(
                     item.name,
                     style: GoogleFonts.lato(
-                      decoration: textDecoration,
-                      fontSize: 21.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        decoration: textDecoration,
+                        fontSize: 21.0,
+                        fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4.0),
                   buildDate(),
@@ -62,7 +61,7 @@ class GroceryTile extends StatelessWidget {
               ),
               buildCheckbox()
             ],
-          ),
+          )
         ],
       ),
     );

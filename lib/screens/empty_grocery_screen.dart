@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
@@ -29,6 +30,7 @@ class EmptyGroceryScreen extends StatelessWidget {
               'Tap the + button to write them down!',
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 16.0),
             MaterialButton(
               textColor: Colors.white,
               child: const Text('Browse Recipes'),

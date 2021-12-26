@@ -78,10 +78,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               );
 
               if (widget.isUpdating) {
-                widget.onUpdate(
-                  groceryItem,
-                  widget.index,
-                );
+                widget.onUpdate(groceryItem, widget.index);
               } else {
                 widget.onCreate(groceryItem);
               }
@@ -91,9 +88,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         elevation: 0.0,
         title: Text(
           'Grocery Item',
-          style: GoogleFonts.lato(
-            fontWeight: FontWeight.w600,
-          ),
+          style: GoogleFonts.lato(fontWeight: FontWeight.w600),
         ),
       ),
       body: Container(
@@ -137,9 +132,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
       children: [
         Text(
           'Item Name',
-          style: GoogleFonts.lato(
-            fontSize: 28.0,
-          ),
+          style: GoogleFonts.lato(fontSize: 28.0),
         ),
         TextField(
           controller: _nameController,
@@ -147,19 +140,13 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           decoration: InputDecoration(
             hintText: 'E.g. Apples, Banana, 1 Bag of salt',
             enabledBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.white,
-              ),
+              borderSide: BorderSide(color: Colors.white),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: _currentColor,
-              ),
+              borderSide: BorderSide(color: _currentColor),
             ),
             border: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: _currentColor,
-              ),
+              borderSide: BorderSide(color: _currentColor),
             ),
           ),
         ),
