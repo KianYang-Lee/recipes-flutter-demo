@@ -29,13 +29,6 @@ class _MainScreenState extends State<MainScreen> {
     getCurrentIndex();
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    saveCurrentIndex();
-  }
-
   void saveCurrentIndex() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(prefSelectedIndexKey, _selectedIndex);
@@ -51,6 +44,13 @@ class _MainScreenState extends State<MainScreen> {
         }
       });
     }
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    saveCurrentIndex();
   }
 
   @override
