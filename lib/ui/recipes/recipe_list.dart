@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../../network/recipe_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../colors.dart';
-import '../recipe_card.dart';
 import '../widgets/custom_dropdown.dart';
-import 'recipe_details.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../network/recipe_model.dart';
 import '../../network/recipe_service.dart';
+import '../recipe_card.dart';
+import '../recipes/recipe_details.dart';
+import '../colors.dart';
 
 class RecipeList extends StatefulWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -23,7 +23,6 @@ class _RecipeListState extends State<RecipeList> {
 
   late TextEditingController searchTextController;
   final ScrollController _scrollController = ScrollController();
-
   List<APIHits> currentSearchList = [];
   int currentCount = 0;
   int currentStartPosition = 0;
@@ -38,6 +37,7 @@ class _RecipeListState extends State<RecipeList> {
   void initState() {
     super.initState();
     getPreviousSearches();
+
     searchTextController = TextEditingController(text: '');
     _scrollController
       ..addListener(() {
@@ -60,6 +60,7 @@ class _RecipeListState extends State<RecipeList> {
       });
   }
 
+  // TODO: Delete getRecipeData()
   Future<APIRecipeQuery> getRecipeData(String query, int from, int to) async {
     final recipeJson = await RecipeService().getRecipes(query, from, to);
     final recipeMap = json.decode(recipeJson);
@@ -197,7 +198,9 @@ class _RecipeListState extends State<RecipeList> {
     if (searchTextController.text.length < 3) {
       return Container();
     }
+    // TODO: change with new response
     return FutureBuilder<APIRecipeQuery>(
+      // TODO: change with new RecipeService
       future: getRecipeData(searchTextController.text.trim(),
           currentStartPosition, currentEndPosition),
       builder: (context, snapshot) {
@@ -211,7 +214,9 @@ class _RecipeListState extends State<RecipeList> {
               ),
             );
           }
+
           loading = false;
+          // TODO: change with new snapshot
           final query = snapshot.data;
           inErrorState = false;
           if (query != null) {
@@ -225,8 +230,10 @@ class _RecipeListState extends State<RecipeList> {
           return _buildRecipeList(context, currentSearchList);
         } else {
           if (currentCount == 0) {
-            // Show a loading indicator while waiting for the recipes
-            return const Center(child: CircularProgressIndicator());
+            // Show a loading indicator while waiting for the movies
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else {
             return _buildRecipeList(context, currentSearchList);
           }
