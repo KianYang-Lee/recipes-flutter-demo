@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
+
 import 'ingredient.dart';
 
+// ignore: must_be_immutable
 class Recipe extends Equatable {
   int? id;
   final String? label;
   final String? image;
   final String? url;
-
   List<Ingredient>? ingredients;
   final double? calories;
   final double? totalWeight;

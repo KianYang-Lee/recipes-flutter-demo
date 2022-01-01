@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:http/http.dart' as http;
 
+import 'package:http/http.dart' as http;
 import 'package:chopper/chopper.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import '../network/model_response.dart';
@@ -10,10 +10,8 @@ import '../network/recipe_model.dart';
 class MockService {
   late APIRecipeQuery _currentRecipes1;
   late APIRecipeQuery _currentRecipes2;
-
   Random nextRecipe = Random();
 
-  // ADD CREATE AND LOAD METHODS
   void create() {
     loadRecipes();
   }
@@ -25,7 +23,6 @@ class MockService {
     _currentRecipes2 = APIRecipeQuery.fromJson(jsonDecode(jsonString));
   }
 
-  // ADD QUERY METHOD
   Future<Response<Result<APIRecipeQuery>>> queryRecipes(
       String query, int from, int to) {
     switch (nextRecipe.nextInt(2)) {

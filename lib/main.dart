@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 
-import 'ui/main_screen.dart';
 import 'package:provider/provider.dart';
 import 'data/memory_repository.dart';
-
 import 'mock_service/mock_service.dart';
+import 'ui/main_screen.dart';
 
 Future<void> main() async {
   _setupLogging();
@@ -29,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // TODO: Update ChangeNotifierProvider
         ChangeNotifierProvider<MemoryRepository>(
           lazy: false,
           create: (_) => MemoryRepository(),

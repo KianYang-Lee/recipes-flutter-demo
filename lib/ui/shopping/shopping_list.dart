@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 import '../../data/memory_repository.dart';
 
@@ -15,17 +14,14 @@ class _ShoppingListState extends State<ShoppingList> {
 
   @override
   Widget build(BuildContext context) {
-    // Add Consumer widget
-    return Consumer<MemoryRepository>(
-      builder: (context, repository, child) {
-        final ingredients = repository.findAllIngredients();
-        return ListView.builder(
-            itemCount: ingredients.length,
-            itemBuilder: (BuildContext context, int index) {
-              return CheckboxListTile(
+    return Consumer<MemoryRepository>(builder: (context, repository, child) {
+      final ingredients = repository.findAllIngredients();
+      return ListView.builder(
+          itemCount: ingredients.length,
+          itemBuilder: (BuildContext context, int index) {
+            return CheckboxListTile(
                 value:
                     checkBoxValues.containsKey(index) && checkBoxValues[index]!,
-                // Update title to include name
                 title: Text(ingredients[index].name ?? ''),
                 onChanged: (newValue) {
                   if (newValue != null) {
@@ -34,9 +30,9 @@ class _ShoppingListState extends State<ShoppingList> {
                     });
                   }
                 },
-              );
-            });
-      },
-    );
+            );
+          },);
+      // TODO: Add else here
+      },);
   }
 }

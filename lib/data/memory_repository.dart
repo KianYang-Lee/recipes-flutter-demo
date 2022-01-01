@@ -7,7 +7,6 @@ class MemoryRepository extends Repository with ChangeNotifier {
   final List<Recipe> _currentRecipes = <Recipe>[];
   final List<Ingredient> _currentIngredients = <Ingredient>[];
 
-  // ADD FIND METHODS
   @override
   List<Recipe> findAllRecipes() {
     return _currentRecipes;
@@ -33,7 +32,6 @@ class MemoryRepository extends Repository with ChangeNotifier {
     return recipeIngredients;
   }
 
-  // ADD INSERT METHODS
   @override
   int insertRecipe(Recipe recipe) {
     _currentRecipes.add(recipe);
@@ -53,7 +51,6 @@ class MemoryRepository extends Repository with ChangeNotifier {
     return <int>[];
   }
 
-  // ADD DELETE METHODS
   @override
   void deleteRecipe(Recipe recipe) {
     _currentRecipes.remove(recipe);
@@ -83,9 +80,7 @@ class MemoryRepository extends Repository with ChangeNotifier {
   }
 
   @override
-  Future init() {
-    return Future.value(null);
-  }
+  Future init() { return Future.value(null); }
 
   @override
   void close() {}
